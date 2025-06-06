@@ -1,0 +1,143 @@
+/* Estilos Globais e de Base */
+body {
+    font-family: 'Inter', sans-serif; /* Fonte principal para o corpo do texto */
+    /* Cores e fundo do body são controlados pelo Tailwind CSS no index.html (ex: bg-pink-50 text-gray-800) */
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif; /* Fonte especial para títulos de destaque e o logo */
+}
+
+/* Estilos para os Cards de Produto */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave para efeitos hover */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Eleva um pouco o card no hover */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra mais pronunciada no hover */
+}
+
+/* Estilos para Botões Primários (ex: Ver Detalhes, Adicionar ao Carrinho) */
+.btn-primary {
+    background-color: #8A2BE2; /* Tom de Violeta Azulado */
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #7B1FA2; /* Tom de Violeta Azulado mais escuro para o hover */
+}
+
+/* --- Estilos de Navegação Aprimorados --- */
+
+/* Estilo base para todos os links de navegação (classe .nav-link) 
+   Isso inclui o logo, os links de texto do menu e o container do ícone do carrinho. */
+.nav-link {
+    transition: color 0.3s ease; /* Transição suave da cor do texto */
+    cursor: pointer;             /* Muda o cursor para indicar que é clicável */
+}
+
+.nav-link:hover {
+    color: #8A2BE2; /* Cor do texto para Violeta Azulado no hover para todos os nav-links */
+}
+
+/* Efeitos específicos para os links de TEXTO da navegação (Início, Loja, etc.) 
+   Estes estão dentro de um <div> dentro da <nav> no header */
+header nav div a.nav-link {
+    padding: 0.5rem 0.4rem; /* Espaçamento interno para melhor clique e visual */
+    position: relative;     /* Necessário para o posicionamento do pseudo-elemento ::after */
+    text-decoration: none;  /* Garante que não haja sublinhado padrão */
+}
+
+/* Pseudo-elemento para criar o sublinhado animado nos links de texto do menu */
+header nav div a.nav-link::after {
+    content: ''; /* Essencial para criar o pseudo-elemento */
+    position: absolute;
+    width: 0; /* Começa invisível (largura zero) */
+    height: 2px; /* Espessura do sublinhado */
+    bottom: 0px; /* Posição do sublinhado (logo abaixo do texto, considerando o padding) */
+    left: 50%; /* Inicia a animação a partir do centro do link */
+    transform: translateX(-50%); /* Ajusta para que a expansão seja do centro para as bordas */
+    background-color: #8A2BE2; /* Cor do sublinhado */
+    transition: width 0.3s ease; /* Animação suave da largura */
+}
+
+/* No hover, o sublinhado se expande para a largura total do link */
+header nav div a.nav-link:hover::after {
+    width: 100%;
+}
+/* A cor do texto no hover para estes links já é coberta pela regra geral de .nav-link:hover */
+
+
+/* Estilização e interatividade para o ÍCONE DO CARRINHO */
+/* A tag <a> que envolve o ícone e o contador já tem as classes .nav-link e .cart-icon-container */
+a.nav-link.cart-icon-container {
+    padding: 0.5rem; /* Espaçamento interno ao redor do ícone */
+    display: inline-flex; /* Para melhor controle do alinhamento interno */
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Para o posicionamento absoluto do contador de itens */
+    /* A transição de cor já vem de .nav-link, adicionamos a de transform */
+    transition: transform 0.2s ease-in-out, color 0.3s ease; 
+}
+
+a.nav-link.cart-icon-container:hover {
+    transform: scale(1.1); /* Efeito de leve aumento no hover */
+    /* A cor do ícone no hover já é tratada pela regra geral de .nav-link:hover */
+}
+
+/* Contador de itens do carrinho (substitui a regra original para melhorias) */
+.cart-count {
+    position: absolute;
+    top: -8px;      /* Ajustado para uma boa visualização acima do ícone */
+    right: -8px;     /* Ajustado para uma boa visualização à direita do ícone */
+    background-color: #EF4444; /* Vermelho vibrante (equivalente ao red-500 do Tailwind) */
+    color: white;
+    border-radius: 50%; /* Deixa o contador perfeitamente redondo */
+    padding: 2px 6px;   /* Espaçamento interno para o número */
+    font-size: 0.65rem; /* Tamanho da fonte do número um pouco menor e mais delicado */
+    font-weight: bold;
+    line-height: 1;     /* Melhora o alinhamento vertical do número dentro do círculo */
+    border: 1.5px solid white; /* Pequena borda branca para destacar do ícone e do fundo */
+    display: none;      /* Inicialmente escondido; o JavaScript controla a exibição */
+    pointer-events: none; /* Evita que o contador interfira no clique do ícone do carrinho */
+}
+/* --- Fim dos Estilos de Navegação Aprimorados --- */
+
+
+/* Estilos para a lista de preços na seção "Monte o Seu" */
+.price-item {
+    background-color: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem; /* Cantos arredondados */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* Sombra sutil */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Controle de exibição das seções que simulam páginas */
+.page-section {
+    display: none; /* Todas as seções de página começam escondidas */
+}
+
+.page-section.active {
+    display: block; /* A seção ativa (controlada por JavaScript) é exibida */
+}
+
+/* Estilos para a área de filtros na página da loja (simulação visual) */
+.filter-group { 
+    margin-bottom: 1rem; 
+}
+.filter-group h4 { 
+    font-weight: 600; /* Tailwind `font-semibold` */
+    margin-bottom: 0.5rem; 
+    color: #4B0082; /* Tom de Indigo/Roxo escuro para o título do grupo de filtro */
+}
+.filter-option { 
+    margin-bottom: 0.25rem; 
+}
+.filter-option label { 
+    margin-left: 0.5rem; /* Espaçamento entre o checkbox e o texto do label */
+}
